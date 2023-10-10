@@ -1,0 +1,123 @@
+<div class="container-scroller">
+    <app-navbar />
+    <div class="container-fluid page-body-wrapper" style="margin-top: 6%;">
+        <app-sidebar />
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <style>
+                .formation-container {
+                    width: 1000px;
+                }
+
+            </style>
+        </head>
+        <body>
+        <p-tabView>
+            <p-tabPanel header="Formation initiale" >
+                <div *ngIf="loadingFormationInitiale; else formationInitialeContent">
+                    Chargement de la Formation Initiale...
+                </div>
+                <ng-template #formationInitialeContent>
+                    <!-- HTML -->
+
+                    <div   class="formation-container" *ngIf="filieresFormationInitiale.length > 0; else noFormationInitialeContent">
+                        <p-accordion class="w-full" *ngFor="let filiere of filieresFormationInitiale">
+                            <p-accordionTab>
+                                <ng-template pTemplate="header">
+
+                                    <div class="flex align-items-center" >
+                                        <span class="vertical-align-middle">{{ filiere.intitule }}</span>
+                                    </div>
+                                </ng-template>
+                                <ng-template pTemplate="content">
+                                    <div class="views-field views-field-field-departement departement">
+                                        <div class="views-field views-field-field-intitule-diplome">
+                            <span
+                                    class="views-label views-label-field-intitule-diplome diplome_field ">Diplôme : </span>
+                                            <span class="field-content filiere_etiquette">{{ filiere.typeDiplomeAObtenir }}</span>
+                                            <div class="views-field views-field-field-type-formation">
+                              <span
+                                      class="views-label views-label-field-type-formation type_formation_label">Type : </span>
+                                                <span class="field-content filiere_etiquette">{{ filiere.typeFormation}}</span>
+                                            </div>
+                                        </div>
+                                        <span
+                                                class="views-label views-label-field-departement departement_field">Département : </span>
+                                        <span class="field-content filiere_etiquette"><a
+                                        ></a>{{ filiere.departementDto.intitule }}</span>
+                                    </div>
+                                    <br>
+                                    <p-button  (click)="inscrire(filiere)" label="S'inscrire" styleClass="p-button-rounded p-button-secondary">
+                                    </p-button>
+                                </ng-template>
+                            </p-accordionTab>
+                        </p-accordion>
+                    </div>
+                </ng-template>
+                <ng-template #noFormationInitialeContent>
+                    <p>Aucune filière de formation Initiale n'est disponible.</p>
+                </ng-template>
+            </p-tabPanel>  <p-tabPanel header="Formation Continue">
+            <div *ngIf="loadingFormationContinue; else formationContinueContent">
+                Chargement de la formation Continue...
+            </div>
+            <ng-template #formationContinueContent>
+                <!-- HTML -->
+                <p style="border: 2px solid #e11414; padding: 8px;">
+                    <strong style="color: red; text-align: center;">Important</strong><br><br>
+                    <span style="color: #141439;">
+    Ces filières sont diplômantes et délivrent des diplômes Universitaires (Université Hassan II de Casablanca)<br><br>
+    Les formations sont payantes. Pour plus d'informations, contactez le responsable de la filière qui vous intéresse.<br><br>
+    Pour accéder à l'une de ces filières, il faut satisfaire les conditions requises, déposer votre candidature en ligne et fournir un dossier électronique.
+    L'étude de votre dossier et l'entretien (éventuellement test écrit ou pratique) sont payants.<br><br>
+    Les formations se déroulent les soirées et/ou Weekends, selon les filières.<br><br>
+    Pour les entreprises qui souhaitent former leurs collaborateurs dans des domaines spécifiques en relation avec les domaines de compétences du corps professoral de l'ENSET (Electronique, Mécanique, Automatisation, Informatique, Intelligence artificielle, Economie, Gestion, Finance, Etc.), n'hésitez pas à nous contacter, nous serons à votre écoute pour répondre au mieux à vos exigences.
+  </span>
+                </p>
+                <div class="formation-container"  *ngIf="filieresFormationContinue.length > 0; else noFormationContinueContent">
+                    <p-accordion class="w-full" *ngFor="let filiere of filieresFormationContinue">
+                        <p-accordionTab>
+                            <ng-template pTemplate="header">
+
+                                <div class="flex align-items-center" >
+                                    <span class="vertical-align-middle">{{ filiere.intitule }}</span>
+                                </div>
+                            </ng-template>
+                            <ng-template pTemplate="content">
+                                <div class="views-field views-field-field-departement departement">
+                                    <div class="views-field views-field-field-intitule-diplome">
+                            <span
+                                    class="views-label views-label-field-intitule-diplome diplome_field ">Diplôme : </span>
+                                        <span class="field-content filiere_etiquette">{{ filiere.typeDiplomeAObtenir }}</span>
+                                        <div class="views-field views-field-field-type-formation">
+                              <span
+                                      class="views-label views-label-field-type-formation type_formation_label">Type : </span>
+                                            <span class="field-content filiere_etiquette">{{ filiere.typeFormation}}</span>
+                                        </div>
+                                    </div>
+                                    <span
+                                            class="views-label views-label-field-departement departement_field">Département : </span>
+                                    <span class="field-content filiere_etiquette"><a
+                                    ></a>{{ filiere.departementDto.intitule }}</span>
+                                </div>
+                                <br>
+                                <p-button (click)="inscrire(filiere)" label="S'inscrire" styleClass="p-button-rounded p-button-secondary">
+                                </p-button>
+                            </ng-template>
+                        </p-accordionTab>
+                    </p-accordion>
+                </div>
+            </ng-template>
+            <ng-template #noFormationContinueContent>
+                <p>Aucune filière de la Formation Continue n'est disponible.</p>
+            </ng-template>
+        </p-tabPanel>
+        </p-tabView>
+
+        </body>
+
+        </html>
+    </div>
+</div>
+

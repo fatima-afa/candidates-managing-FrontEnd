@@ -1,0 +1,166 @@
+<div class="container-scroller">
+    <app-navbar />
+    <div class="container-fluid page-body-wrapper" style="margin-top: 6%;">
+        <app-sidebar />
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="page-header">
+                    <h3 class="page-title mt-2">
+                        <span class="page-title-icon bg-gradient-primary text-white me-2">
+                            <i class="mdi mdi-folder "></i>
+                        </span> Ajouter Direction Pédagogique
+                    </h3>
+                    <nav aria-label="breadcrumb">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item active d-none" aria-current="page">
+                                <span></span>Aperçu <i
+                                    class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="col-12 grid-margin">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Remplir les informations</h4>
+                                    <form class="form-sample" [formGroup]="AddDirectionFormGroup">
+                                        <p class="card-description"> Informations personnelles</p>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label htmlFor="nom" class="col-sm-3 col-form-label">Nom <span
+                                                            class="text-danger">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" required="" class="form-control" pInputText
+                                                            id="nom" aria-describedby="username-help" placeholder="Nom"
+                                                            formControlName="username" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label htmlFor="Prenom" class="col-sm-3 col-form-label">Prenom <span
+                                                            class="text-danger">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" required="" class="form-control" pInputText
+                                                            id="Prenom" aria-describedby="username-help"
+                                                            placeholder="Prenom" formControlName="username" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label htmlFor="email" class="col-sm-3 col-form-label">Email <span
+                                                            class="text-danger">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" required="" class="form-control" pInputText
+                                                            id="email" aria-describedby="username-help"
+                                                            placeholder="Email" formControlName="email" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label htmlFor="adresse" class="col-sm-3 col-form-label">Adresse
+                                                        <span class="text-danger">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" required="" class="form-control" pInputText
+                                                            id="adresse" aria-describedby="username-help"
+                                                            placeholder="Adresse" formControlName="adresse" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label htmlFor="cin" class="col-sm-3 col-form-label">CIN <span
+                                                            class="text-danger">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" required="" class="form-control" pInputText
+                                                            id="cin" aria-describedby="username-help" placeholder="CIN"
+                                                            formControlName="cin" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label htmlFor="cne" class="col-sm-3 col-form-label">Matricule <span
+                                                            class="text-danger">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" required="" class="form-control" pInputText
+                                                            id="cne" aria-describedby="username-help" placeholder="Matricule"
+                                                            formControlName="cne" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label htmlFor="telephone" class="col-sm-3 col-form-label">Telephone
+                                                        <span class="text-danger">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" required="" class="form-control" pInputText
+                                                            id="telephone" aria-describedby="username-help"
+                                                            placeholder="Telephone" formControlName="telephone" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label htmlFor="password" class="col-sm-3 col-form-label">Mot de
+                                                        passe <span class="text-danger">*</span></label>
+                                                    <div class="col-sm-9">
+
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <input type="text" required="" class="form-control"
+                                                                    pInputText id="password"
+                                                                    aria-describedby="password-help"
+                                                                    placeholder="mot de passe"
+                                                                    formControlName="password" />
+                                                                <div class="input-group-prepend">
+                                                                    <span
+                                                                    (click)="generateAndLogPassword()"
+                                                                        class="input-group-text bg-gradient-primary text-white"
+                                                                        style="height: 100%;cursor: pointer;"><i
+                                                                            class=" mdi mdi-key"></i></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+
+                                    </form>
+
+
+                                    <div class="d-flex justify-content-end">
+                                        <button class="btn btn-gradient-info me-2">Enregistrer</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <app-footer />
+        </div>
+    </div>
+</div>

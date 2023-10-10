@@ -1,0 +1,239 @@
+<div class="container-scroller">
+    <app-navbar />
+    <div class="container-fluid page-body-wrapper" style="margin-top: 6%;">
+        <app-sidebar />
+        <div>
+            <!DOCTYPE html>
+            <html>
+
+            <head>
+                <title>Recherche de Candidat</title>
+                <style>
+
+                    .formation-container {
+                        width: 1000px;
+                    }
+
+
+                    /* Styles CSS pour le panneau de recherche */
+                    .search-panel {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                        width: 800px;
+                        margin-left: 60px ;
+                        margin-top: 30px ;
+                        padding: 40px;
+                        padding-right:900px;
+                        border: 2px solid #ccc;
+                        border-radius: 5px;
+                        margin-bottom: 40px;
+                    }
+
+                    .p-accordion p-accordiontab .p-accordion-tab {
+
+                        margin: 50px;
+
+                    }
+                    .search-panel input[type="text"],
+                    .search-panel select {
+                        flex-grow: 1;
+                        padding: 5px;
+                        margin-right: 20px;
+                        margin-bottom: 10px;
+
+                        border: 1px solid #ccc;
+                        border-radius: 3px;
+                    }
+
+                    .search-panel button {
+                        padding: 10px 20px;
+                        margin-left:50px;
+                        background-color: #337ab7;
+                        color: #fff;
+                        border: none;
+                        border-radius: 3px;
+                        cursor: pointer;
+                    }
+                </style>
+            </head>
+
+            <body>
+            <div class="search-panel">
+                <div>
+                    <input type="text" id="nomCandidat" name="nomCandidat" placeholder="mot cle du Candidat" #candidatInput>
+                    <button type="button"(click)="searchCandidat(candidatInput.value)">Rechercher </button>
+                </div>
+                <div>
+                    <input type="text" id="filiere" name="filiere" placeholder="mot cle du Filière"#filiereInput>
+                    <button type="button" (click)="searchFiliere(filiereInput.value)">Rechercher</button>
+                </div>
+            </div>
+            <div>
+
+                <div *ngIf="filiereInput.value  && !candidatInput.value;">
+                    <p-accordion>
+
+                        <p-accordionTab *ngFor="let filiere of searchResults">
+                        <ng-template pTemplate="header">
+                            <div class="flex align-items-center">
+                                <span class="vertical-align-middle">{{ filiere.intitule }}</span>
+                                <a (click)="exportToExcel(filiere)">
+                                    <img src="../../../assets/images/importicon.png" style= "width :50px;  padding-left: 10px;" >
+                   x             </a>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="content">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>CIN</th>
+                                    <th>Nom</th>
+                                    <th>Prénom</th>
+                                    <th>Adresse</th>
+                                    <th>Email</th>
+                                    <th>Date de Naissance</th>
+                                    <th>Téléphone</th>
+                                    <th>CNE</th>
+                                    <th>Ville</th>
+                                    <th>Diplome</th>
+                                    <th>Baccalauréat</th>
+                                    <th>Année d'Obtention du Bac</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let candidat of candidatsByFiliere[filiere.id]">
+                                    <td>{{ candidat.cin }}</td>
+                                    <td>{{ candidat.nom }}</td>
+                                    <td>{{ candidat.prenom }}</td>
+                                    <td>{{ candidat.addresse }}</td>
+                                    <td>{{ candidat.email }}</td>
+                                    <td>{{ candidat.dateNaissance | date:'yyyy-MM-dd' }}</td>
+                                    <td>{{ candidat.telephone }}</td>
+                                    <td>{{ candidat.cne }}</td>
+                                    <td>{{ candidat.ville }}</td>
+                                    <td>{{ diplomesByCandidat[candidat.id]?.typeDiplome }}</td>
+                                    <td>{{ candidat.bac }}</td>
+                                    <td>{{ candidat.bacAnneObtention | date:'yyyy' }}</td>
+                                    <!-- Affichez d'autres attributs des candidats -->
+                                </tr>
+                                </tbody>
+                            </table>
+                        </ng-template>
+                    </p-accordionTab>
+                    </p-accordion>
+
+                </div>
+
+                <div *ngIf="candidatInput.value && !filiereInput.value;">
+
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>CIN</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Adresse</th>
+                            <th>Email</th>
+                            <th>Date de Naissance</th>
+                            <th>Téléphone</th>
+                            <th>CNE</th>
+                            <th>Ville</th>
+                            <th>Diplome</th>
+                            <th>Baccalauréat</th>
+                            <th>Année d'Obtention du Bac</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let candidat of searchResults2">
+                            <td>{{ candidat.cin }}</td>
+                            <td>{{ candidat.nom }}</td>
+                            <td>{{ candidat.prenom }}</td>
+                            <td>{{ candidat.addresse }}</td>
+                            <td>{{ candidat.email }}</td>
+                            <td>{{ candidat.dateNaissance | date:'yyyy-MM-dd' }}</td>
+                            <td>{{ candidat.telephone }}</td>
+                            <td>{{ candidat.cne }}</td>
+                            <td>{{ candidat.ville }}</td>
+                            <td>{{ diplomesByCandidat[candidat.id]?.typeDiplome }}</td>
+                            <td>{{ candidat.bac }}</td>
+                            <td>{{ candidat.bacAnneObtention | date:'yyyy' }}</td>
+                            <!-- Affichez d'autres attributs des candidats -->
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div *ngIf="filiereInput.value || candidatInput.value; else showAllDepartments">
+                    <!-- Code pour afficher tous les départements -->
+                </div>
+                <ng-template #showAllDepartments>
+                <p-accordion class="w-full" *ngFor="let department of departements">
+                    <p-accordionTab>
+                        <ng-template pTemplate="header">
+                            <div class="flex align-items-center">
+                                <span class="vertical-align-middle">{{ department.intitule }}</span>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="content">
+                            <p-accordion class="w-full">
+                                <p-accordionTab  *ngFor="let filiere of filieresByDepartement[department.id]">
+                                    <ng-template pTemplate="header">
+                                        <div class="flex align-items-center">
+                                            <span class="vertical-align-middle">{{ filiere.intitule }}</span>
+                                            <a (click)="exportToExcel(filiere)">
+                                                <img src="../../../assets/images/importicon.png" style= "width :50px;  padding-left: 10px;" >
+                                            </a>
+                                        </div>
+                                    </ng-template>
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>CIN</th>
+                                            <th>Nom</th>
+                                            <th>Prénom</th>
+                                            <th>Adresse</th>
+                                            <th>Email</th>
+                                            <th>Date de Naissance</th>
+                                            <th>Téléphone</th>
+                                            <th>CNE</th>
+                                            <th>Ville</th>
+                                            <th>Diplome</th>
+                                            <th>Baccalauréat</th>
+                                            <th>Année d'Obtention du Bac</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr *ngFor="let candidat of candidatsByFiliere[filiere.id]">
+                                            <td>{{ candidat.cin }}</td>
+                                            <td>{{ candidat.nom }}</td>
+                                            <td>{{ candidat.prenom }}</td>
+                                            <td>{{ candidat.addresse }}</td>
+                                            <td>{{ candidat.email }}</td>
+                                            <td>{{ candidat.dateNaissance | date:'yyyy-MM-dd' }}</td>
+                                            <td>{{ candidat.telephone }}</td>
+                                            <td>{{ candidat.cne }}</td>
+                                            <td>{{ candidat.ville }}</td>
+                                            <td>{{ diplomesByCandidat[candidat.id]?.typeDiplome }}</td>
+                                            <td>{{ candidat.bac }}</td>
+                                            <td>{{ candidat.bacAnneObtention | date:'yyyy' }}</td>
+                                            <!-- Affichez d'autres attributs des candidats -->
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </p-accordionTab>
+                            </p-accordion>
+                        </ng-template>
+                    </p-accordionTab>
+                </p-accordion>
+                </ng-template>
+
+            </div>
+
+
+            </body>
+            </html>
+
+        </div>
+    </div>
+</div>

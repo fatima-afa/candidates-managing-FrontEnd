@@ -1,0 +1,32 @@
+<div class="container-scroller">
+  <app-navbar />
+  <div class="container-fluid page-body-wrapper" style="margin-top: 6%;">
+    <app-sidebar />
+
+    <br>
+    <div>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Intitulé</th>
+          <th>Type de formation</th>
+          <th>Type de diplôme</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let diplome of diplomes">
+          <td>{{ diplome.filiereDto.intitule }}</td>
+          <td>{{ diplome.filiereDto.typeFormation }}</td>
+          <td>{{ diplome.filiereDto.typeDiplomeAObtenir }}</td>
+          <td>
+            <button class="btn btn-danger pi-delete-left ">Supprimer</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>

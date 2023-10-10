@@ -1,0 +1,817 @@
+<div class="container-scroller">
+  <app-navbar />
+  <div class="container-fluid page-body-wrapper" style="margin-top: 6%;">
+    <app-sidebar />
+
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <div class="page-header">
+          <h3 class="page-title mt-2">
+            <span class="page-title-icon bg-gradient-primary text-white me-2">
+              <i class="mdi mdi-folder "></i>
+            </span> Mon Dossier
+          </h3>
+          <nav aria-label="breadcrumb">
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item active d-none" aria-current="page">
+                <span></span>Aperçu <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="row">
+          <div class="col-12 grid-margin">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="position-relative m-4">
+                    <div class="progress" role="progressbar" aria-label="Progress" aria-valuenow="50" aria-valuemin="0"
+                         aria-valuemax="100" style="height: 1px;">
+                      <div class="progress-bar" style="width: 0%"></div>
+                    </div>
+                    <button type="button" id="st1"
+                            class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-info "
+                            style="width: 2rem; height:2rem;">1</button>
+                    <button type="button" id="st2"
+                            class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary "
+                            style="width: 2rem; height:2rem;">2</button>
+                  </div>
+                  <br>
+                  <h4 class="card-title">Remplir les informations</h4>
+
+                  <form class="form-sample" *ngIf="step1" [formGroup]="candidatFormGroup">
+                    <p class="card-description"> Informations personnelles</p>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                      <div class="form-group row">
+                        <label htmlFor="nom" class="col-sm-3 col-form-label">Nom <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" pInputText id="nom"
+                                 aria-describedby="username-help" placeholder="Nom" formControlName="nom"
+                                 [class.is-invalid]="candidatFormGroup?.get('nom')?.invalid && candidatFormGroup?.get('nom')?.touched" />
+                          <div class="invalid-feedback" *ngIf="candidatFormGroup?.get('nom')?.invalid && candidatFormGroup?.get('nom')?.touched">
+                            Veuillez entrer votre nom.
+                          </div>
+                      </div>
+                      </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label htmlFor="Prenom" class="col-sm-3 col-form-label">Prénom <span class="text-danger">*</span></label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" pInputText id="Prenom"
+                                   aria-describedby="username-help" placeholder="Prénom" formControlName="prenom"
+                                   [class.is-invalid]="candidatFormGroup?.get('prenom')?.invalid && candidatFormGroup?.get('prenom')?.touched" />
+                            <div class="invalid-feedback" *ngIf="candidatFormGroup?.get('prenom')?.invalid && candidatFormGroup?.get('prenom')?.touched">
+                              Veuillez entrer votre prénom.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label htmlFor="email" class="col-sm-3 col-form-label">Email <span class="text-danger">*</span></label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" pInputText id="email"
+                                     aria-describedby="username-help" placeholder="Email" formControlName="email"
+                                     [class.is-invalid]="candidatFormGroup?.get('email')?.invalid && candidatFormGroup?.get('email')?.touched" />
+                              <div class="invalid-feedback" *ngIf="candidatFormGroup?.get('email')?.invalid && candidatFormGroup?.get('email')?.touched">
+                                Veuillez entrer une adresse email valide.
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label htmlFor="adresse" class="col-sm-3 col-form-label">Adresse<span class="text-danger">*</span></label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" pInputText id="adresse"
+                                     aria-describedby="username-help" placeholder="Adresse" formControlName="adresse"
+                                     [class.is-invalid]="candidatFormGroup?.get('adresse')?.invalid && candidatFormGroup?.get('adresse')?.touched" />
+                              <div class="invalid-feedback" *ngIf="candidatFormGroup?.get('adresse')?.invalid && candidatFormGroup?.get('adresse')?.touched">
+                                Veuillez entrer votre adresse.
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label htmlFor="cin" class="col-sm-3 col-form-label">CIN <span class="text-danger">*</span></label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" pInputText id="cin"
+                                     aria-describedby="username-help" placeholder="CIN" formControlName="cin"
+                                     [class.is-invalid]="candidatFormGroup?.get('cin')?.invalid && candidatFormGroup?.get('cin')?.touched" />
+                              <div class="invalid-feedback" *ngIf="candidatFormGroup?.get('cin')?.invalid && candidatFormGroup?.get('cin')?.touched">
+                                Veuillez entrer votre numéro de CIN.
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label htmlFor="cne" class="col-sm-3 col-form-label">CNE <span class="text-danger">*</span></label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" pInputText id="cne"
+                                               aria-describedby="username-help" placeholder="CNE" formControlName="cne"
+                                               [class.is-invalid]="candidatFormGroup?.get('cne')?.invalid && candidatFormGroup?.get('cne')?.touched" />
+                                        <div class="invalid-feedback" *ngIf="candidatFormGroup?.get('cne')?.invalid && candidatFormGroup?.get('cne')?.touched">
+                                            Veuillez entrer votre numéro de CNE.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                      <<div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label htmlFor="telephone" class="col-sm-3 col-form-label">Téléphone <span class="text-danger">*</span></label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" pInputText id="telephone"
+                                   aria-describedby="username-help" placeholder="Téléphone" formControlName="telephone"
+                                   [class.is-invalid]="candidatFormGroup?.get('telephone')?.invalid && candidatFormGroup?.get('telephone')?.touched" />
+                            <div class="invalid-feedback" *ngIf="candidatFormGroup?.get('telephone')?.invalid && candidatFormGroup?.get('telephone')?.touched">
+                              Veuillez entrer votre numéro de téléphone.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label htmlFor="ville" class="col-sm-3 col-form-label">Ville <span class="text-danger">*</span></label>
+                          <div class="col-sm-8">
+                            <select formControlName="ville" class="form-control col-sm-9 form-control-sm"  (change)="onVilleChange($event)"
+                                    [class.is-invalid]="candidatFormGroup?.get('ville')?.invalid && candidatFormGroup?.get('ville')?.touched" required>
+                              <option value="">---Sélectionner---</option>
+                              <option value="Afourar">Afourar</option>
+                              <option value="Agadir">Agadir</option>
+                              <option value="Agdz">Agdz</option>
+                              <option value="Aghbala">Aghbala</option>
+                              <option value="Agni Izimmer">Agni Izimmer</option>
+                              <option value="Agourai">Agourai</option>
+                              <option value="Ahfir">Ahfir</option>
+                              <option value="Ain El Aouda">Ain El Aouda</option>
+                              <option value="Ain Taoujdate">Ain Taoujdate</option>
+                              <option value="Ait Daoud">Ait Daoud</option>
+                              <option value="Ajdir">Ajdir</option>
+                              <option value="Akchour">Akchour</option>
+                              <option value="Akka">Akka</option>
+                              <option value="Aklim">Aklim</option>
+                              <option value="Aknoul">Aknoul</option>
+                              <option value="Al Aroui">Al Aroui</option>
+                              <option value="Al Hoceïma">Al Hoceïma</option>
+                              <option value="Alnif">Alnif</option>
+                              <option value="Amalou Ighriben">Amalou Ighriben</option>
+                              <option value="Amizmiz">Amizmiz</option>
+                              <option value="Anzi">Anzi</option>
+                              <option value="Aoufous">Aoufous</option>
+                              <option value="Aoulouz">Aoulouz</option>
+                              <option value="Aourir">Aourir</option>
+                              <option value="Arazane">Arazane</option>
+                              <option value="Arbaoua">Arbaoua</option>
+                              <option value="Arfoud">Arfoud</option>
+                              <option value="Assa">Assa</option>
+                              <option value="Assahrij">Assahrij</option>
+                              <option value="Assilah">Assilah</option>
+                              <option value="Awsard">Awsard</option>
+                              <option value="Azemmour">Azemmour</option>
+                              <option value="Azrou">Azrou</option>
+                              <option value="Aïn Bni Mathar">Aïn Bni Mathar</option>
+                              <option value="Aïn Cheggag">Aïn Cheggag</option>
+                              <option value="Aïn Dorij">Aïn Dorij</option>
+                              <option value="Aïn Erreggada">Aïn Erreggada</option>
+                              <option value="Aïn Harrouda">Aïn Harrouda</option>
+                              <option value="Aïn Jemaa">Aïn Jemaa</option>
+                              <option value="Aïn Karma">Aïn Karma</option>
+                              <option value="Aïn Leuh">Aïn Leuh</option>
+                              <option value="Aït Attab">Aït Attab</option>
+                              <option value="Aït Baha">Aït Baha</option>
+                              <option value="Aït Boubidmane">Aït Boubidmane</option>
+                              <option value="Aït Hichem">Aït Hichem</option>
+                              <option value="Aït Iaâza">Aït Iaâza</option>
+                              <option value="Aït Ishaq">Aït Ishaq</option>
+                              <option value="Aït Majden">Aït Majden</option>
+                              <option value="Aït Melloul">Aït Melloul</option>
+                              <option value="Aït Ourir">Aït Ourir</option>
+                              <option value="Aït Yahya">Aït Yahya</option>
+                              <option value="Bab Berred">Bab Berred</option>
+                              <option value="Bab Taza">Bab Taza</option>
+                              <option value="Bab Marzouka">Bab Marzouka</option>
+                              <option value="Bab Taliouine">Bab Taliouine</option>
+                              <option value="Bab el Oued">Bab el Oued</option>
+                              <option value="Ben Ahmed">Ben Ahmed</option>
+                              <option value="Ben Guerir">Ben Guerir</option>
+                              <option value="Ben Slimane">Ben Slimane</option>
+                              <option value="Ben Taieb">Ben Taieb</option>
+                              <option value="Benslimane">Benslimane</option>
+                              <option value="Berkane">Berkane</option>
+                              <option value="Berrechid">Berrechid</option>
+                              <option value="Bhalil">Bhalil</option>
+                              <option value="Biougra">Biougra</option>
+                              <option value="Bir Anzarane">Bir Anzarane</option>
+                              <option value="Bir Gandouz">Bir Gandouz</option>
+                              <option value="Bir Jdid">Bir Jdid</option>
+                              <option value="Bir Kacem">Bir Kacem</option>
+                              <option value="Bir Lahlou">Bir Lahlou</option>
+                              <option value="Bir Tam Tam">Bir Tam Tam</option>
+                              <option value="Bni Ansar">Bni Ansar</option>
+                              <option value="Bni Bouayach">Bni Bouayach</option>
+                              <option value="Bni Bouayach">Bni Bouayach</option>
+                              <option value="Bni Drar">Bni Drar</option>
+                              <option value="Bni Hadifa">Bni Hadifa</option>
+                              <option value="Bni Tadjite">Bni Tadjite</option>
+                              <option value="Bni Tadjite">Bni Tadjite</option>
+                              <option value="Bouanane">Bouanane</option>
+                              <option value="Bouarfa">Bouarfa</option>
+                              <option value="Boudnib">Boudnib</option>
+                              <option value="Boufakrane">Boufakrane</option>
+                              <option value="Boujdour">Boujdour</option>
+                              <option value="Bouknadel">Bouknadel</option>
+                              <option value="Boulmane">Boulmane</option>
+                              <option value="Boumalne">Boumalne</option>
+                              <option value="Boumia">Boumia</option>
+                              <option value="Bouznika">Bouznika</option>
+                              <option value="Bouïra">Bouïra</option>
+                              <option value="Casablanca">Casablanca</option>
+                              <option value="Chefchaouen">Chefchaouen</option>
+                              <option value="Chemaia">Chemaia</option>
+                              <option value="Chichaoua">Chichaoua</option>
+                              <option value="Dakhla">Dakhla</option>
+                              <option value="Dar Bouazza">Dar Bouazza</option>
+                              <option value="Dardara">Dardara</option>
+                              <option value="Demnate">Demnate</option>
+                              <option value="Douar Kannine">Douar Kannine</option>
+                              <option value="Douar Ouled Zidouh">Douar Ouled Zidouh</option>
+                              <option value="Drargua">Drargua</option>
+                              <option value="Driouch">Driouch</option>
+                              <option value="El Aioun Sidi Mellouk">El Aioun Sidi Mellouk</option>
+                              <option value="El Gara">El Gara</option>
+                              <option value="El Guerdane">El Guerdane</option>
+                              <option value="El Hajeb">El Hajeb</option>
+                              <option value="El Hajeb">El Hajeb</option>
+                              <option value="El Harhoura">El Harhoura</option>
+                              <option value="El Jadida">El Jadida</option>
+                              <option value="El Kelaâ des Sraghna">El Kelaâ des Sraghna</option>
+                              <option value="El Ksiba">El Ksiba</option>
+                              <option value="El Marsa">El Marsa</option>
+                              <option value="El Menzel">El Menzel</option>
+                              <option value="El Menzel">El Menzel</option>
+                              <option value="El Ouatia">El Ouatia</option>
+                              <option value="El Youssoufia">El Youssoufia</option>
+                              <option value="Er-Rich">Er-Rich</option>
+                              <option value="Errachidia">Errachidia</option>
+                              <option value="Essaouira">Essaouira</option>
+                              <option value="Fam El Hisn">Fam El Hisn</option>
+                              <option value="Farkhana">Farkhana</option>
+                              <option value="Fes">Fes</option>
+                              <option value="Figuig">Figuig</option>
+                              <option value="Fnideq">Fnideq</option>
+                              <option value="Foum Jamaa">Foum Jamaa</option>
+                              <option value="Foum Zguid">Foum Zguid</option>
+                              <option value="Guelmim">Guelmim</option>
+                              <option value="Guercif">Guercif</option>
+                              <option value="Guisser">Guisser</option>
+                              <option value="Had Kourt">Had Kourt</option>
+                              <option value="Harhoura">Harhoura</option>
+                              <option value="Hrara">Hrara</option>
+                              <option value="Ifrane">Ifrane</option>
+                              <option value="Imintanoute">Imintanoute</option>
+                              <option value="Imouzzer Kandar">Imouzzer Kandar</option>
+                              <option value="Inezgane">Inezgane</option>
+                              <option value="Irherm">Irherm</option>
+                              <option value="Jebel Bouhachem">Jebel Bouhachem</option>
+                              <option value="Jorf El Melha">Jorf El Melha</option>
+                              <option value="Jorf Lasfar">Jorf Lasfar</option>
+                              <option value="Kariat Arekmane">Kariat Arekmane</option>
+                              <option value="Kasba Tadla">Kasba Tadla</option>
+                              <option value="Kenitra">Kenitra</option>
+                              <option value="Khemisset">Khemisset</option>
+                              <option value="Khemis Zemamra">Khemis Zemamra</option>
+                              <option value="Khenifra">Khenifra</option>
+                              <option value="Khouribga">Khouribga</option>
+                              <option value="Ksar El Kebir">Ksar El Kebir</option>
+                              <option value="Ksar es Seghir">Ksar es Seghir</option>
+                              <option value="Ksar el-Kebir">Ksar el-Kebir</option>
+                              <option value="Laâyoune">Laâyoune</option>
+                              <option value="Laâyoune-Boujdour-Sakia El Hamra">Laâyoune-Boujdour-Sakia El Hamra</option>
+                              <option value="Laghdir">Laghdir</option>
+                              <option value="Lahraouyine">Lahraouyine</option>
+                              <option value="Lakhsas">Lakhsas</option>
+                              <option value="Larache">Larache</option>
+                              <option value="Lqliaa">Lqliaa</option>
+                              <option value="M'diq">M'diq</option>
+                              <option value="M'rirt">M'rirt</option>
+                              <option value="Mehdia">Mehdia</option>
+                              <option value="Meknès">Meknès</option>
+                              <option value="Midar">Midar</option>
+                              <option value="Midelt">Midelt</option>
+                              <option value="Mirleft">Mirleft</option>
+                              <option value="Missour">Missour</option>
+                              <option value="Mohammedia">Mohammedia</option>
+                              <option value="Moulay Ali Cherif">Moulay Ali Cherif</option>
+                              <option value="Moulay Bouazza">Moulay Bouazza</option>
+                              <option value="Moulay Bousselham">Moulay Bousselham</option>
+                              <option value="Moulay Driss Aghbal">Moulay Driss Aghbal</option>
+                              <option value="Moulay Idriss">Moulay Idriss</option>
+                              <option value="Moulay Yaâcoub">Moulay Yaâcoub</option>
+                              <option value="Nador">Nador</option>
+                              <option value="Naples">Naples</option>
+                              <option value="Oualidia">Oualidia</option>
+                              <option value="Ouarzazate">Ouarzazate</option>
+                              <option value="Ouazzane">Ouazzane</option>
+                              <option value="Ouezzane">Ouezzane</option>
+                              <option value="Oulad Amrane">Oulad Amrane</option>
+                              <option value="Oulad Ayad">Oulad Ayad</option>
+                              <option value="Oulad Berhil">Oulad Berhil</option>
+                              <option value="Oulad Frej">Oulad Frej</option>
+                              <option value="Oulad Ghadbane">Oulad Ghadbane</option>
+                              <option value="Oulad Hriz Sahel">Oulad Hriz Sahel</option>
+                              <option value="Oulad M'rah">Oulad M'rah</option>
+                              <option value="Oulad Said">Oulad Said</option>
+                              <option value="Oulad Teïma">Oulad Teïma</option>
+                              <option value="Oulad Yaich">Oulad Yaich</option>
+                              <option value="Oulad Zbair">Oulad Zbair</option>
+                              <option value="Oulad-Mbarek">Oulad-Mbarek</option>
+                              <option value="Oulad-Tayeb">Oulad-Tayeb</option>
+                              <option value="Ouled Tayeb">Ouled Tayeb</option>
+                              <option value="Ouzoud">Ouzoud</option>
+                              <option value="Plage Ben Mansour">Plage Ben Mansour</option>
+                              <option value="Rabat">Rabat</option>
+                              <option value="Ras El Ain">Ras El Ain</option>
+                              <option value="Ras El Ma">Ras El Ma</option>
+                              <option value="Rehamna">Rehamna</option>
+                              <option value="Rissani">Rissani</option>
+                              <option value="Rouadi">Rouadi</option>
+                              <option value="Safi">Safi</option>
+                              <option value="Saidia">Saidia</option>
+                              <option value="Saïdia">Saïdia</option>
+                              <option value="Salé">Salé</option>
+                              <option value="Sefrou">Sefrou</option>
+                              <option value="Selouane">Selouane</option>
+                              <option value="Settat">Settat</option>
+                              <option value="Sidi Abdallah Ghiat">Sidi Abdallah Ghiat</option>
+                              <option value="Sidi Addi">Sidi Addi</option>
+                              <option value="Sidi Ahmed El Amraoui">Sidi Ahmed El Amraoui</option>
+                              <option value="Sidi Allal El Bahraoui">Sidi Allal El Bahraoui</option>
+                              <option value="Sidi Allal Tazi">Sidi Allal Tazi</option>
+                              <option value="Sidi Bennour">Sidi Bennour</option>
+                              <option value="Sidi Bibi">Sidi Bibi</option>
+                              <option value="Sidi Bou Othmane">Sidi Bou Othmane</option>
+                              <option value="Sidi Bouzid">Sidi Bouzid</option>
+                              <option value="Sidi Ifni">Sidi Ifni</option>
+                              <option value="Sidi Jaber">Sidi Jaber</option>
+                              <option value="Sidi Kacem">Sidi Kacem</option>
+                              <option value="Sidi Kacem">Sidi Kacem</option>
+                              <option value="Sidi Lyamani">Sidi Lyamani</option>
+                              <option value="Sidi Mellouk">Sidi Mellouk</option>
+                              <option value="Sidi Mohamed Ben Rahal">Sidi Mohamed Ben Rahal</option>
+                              <option value="Sidi Rahhal">Sidi Rahhal</option>
+                              <option value="Sidi Rahhal Chataï">Sidi Rahhal Chataï</option>
+                              <option value="Sidi Slimane">Sidi Slimane</option>
+                              <option value="Sidi Slimane">Sidi Slimane</option>
+                              <option value="Sidi Smaïl">Sidi Smaïl</option>
+                              <option value="Sidi Taibi">Sidi Taibi</option>
+                              <option value="Sidi Taïbi">Sidi Taïbi</option>
+                              <option value="Sidi Yahya El Gharb">Sidi Yahya El Gharb</option>
+                              <option value="Sidi Youssef Ben Ali">Sidi Youssef Ben Ali</option>
+                              <option value="Sidi Youssef Ben Ali">Sidi Youssef Ben Ali</option>
+                              <option value="Skhirat">Skhirat</option>
+                              <option value="Smara">Smara</option>
+                              <option value="Soulalè">Soulalè</option>
+                              <option value="Srarhnga">Srarhnga</option>
+                              <option value="Tan-Tan">Tan-Tan</option>
+                              <option value="Tangier">Tangier</option>
+                              <option value="Tanoumrit">Tanoumrit</option>
+                              <option value="Taourirt">Taourirt</option>
+                              <option value="Taroudant">Taroudant</option>
+                              <option value="Taza">Taza</option>
+                              <option value="Tata">Tata</option>
+                              <option value="Taznakht">Taznakht</option>
+                              <option value="Tefraout">Tefraout</option>
+                              <option value="Témara">Témara</option>
+                              <option value="Tétouan">Tétouan</option>
+                              <option value="Tifelt">Tifelt</option>
+                              <option value="Tiflet">Tiflet</option>
+                              <option value="Tighassaline">Tighassaline</option>
+                              <option value="Tikiouine">Tikiouine</option>
+                              <option value="Tinghir">Tinghir</option>
+                              <option value="Tit Mellil">Tit Mellil</option>
+                              <option value="Tiznit">Tiznit</option>
+                              <option value="Tnine Chtouka">Tnine Chtouka</option>
+                              <option value="Touarga">Touarga</option>
+                              <option value="Touima">Touima</option>
+                              <option value="Touissit">Touissit</option>
+                              <option value="Toumliline">Toumliline</option>
+                              <option value="Tounfite">Tounfite</option>
+                              <option value="Touzounine">Touzounine</option>
+                              <option value="Trarza">Trarza</option>
+                              <option value="Tsaft">Tsaft</option>
+                              <option value="Tzounine">Tzounine</option>
+                              <option value="Tétouan">Tétouan</option>
+                              <option value="Zag">Zag</option>
+                              <option value="Zagora">Zagora</option>
+                              <option value="Zaida">Zaida</option>
+                              <option value="Zaio">Zaio</option>
+                              <option value="Zaouiat Cheikh">Zaouiat Cheikh</option>
+                              <option value="Zaouiat Sidi Ben Hamdoun">Zaouiat Sidi Ben Hamdoun</option>
+                              <option value="Zaouiat Sidi Kacem">Zaouiat Sidi Kacem</option>
+                              <option value="Zaouïat Ben Idir">Zaouïat Ben Idir</option>
+                              <option value="Zaouïat Bougrine">Zaouïat Bougrine</option>
+                              <option value="Zaouïat Cheikh">Zaouïat Cheikh</option>
+                              <option value="Zeghanghane">Zeghanghane</option>
+                              <option value="Zelamta">Zelamta</option>
+                              <option value="Zemamra">Zemamra</option>
+                              <option value="Zenata">Zenata</option>
+                              <option value="Zerarda">Zerarda</option>
+                              <option value="Zerhoun">Zerhoun</option>
+                              <option value="Zerkten">Zerkten</option>
+                              <option value="Ziaten">Ziaten</option>
+                              <option value="Zinat">Zinat</option>
+                              <option value="Zinat">Zinat</option>
+                              <option value="Zoug">Zoug</option>
+                              <option value="Autre">Autre</option>
+                            </select>
+                            <div *ngIf="showVilleAutre" class="col-sm-8">
+                              <input type="text" required class="form-control" pInputText id="ville2" aria-describedby="username-help"
+                                     placeholder="Saisir la ville" formControlName="ville2">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="invalid-feedback"
+                             *ngIf="candidatFormGroup?.get('ville')?.invalid && candidatFormGroup?.get('ville')?.touched">
+                          Veuillez sélectionner une ville.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label htmlFor="dateNaissance" class="col-sm-3 col-form-label">Date Naissance <span class="text-danger">*</span></label>
+                          <div class="col-sm-8">
+                            <input type="date" id="dateNaissance" formControlName="dateNaissance" class="form-control form-control-sm"
+                                   [class.is-invalid]="candidatFormGroup?.get('dateNaissance')?.invalid && candidatFormGroup?.get('dateNaissance')?.touched"
+                                   required min="1990-12-30">
+                            <div class="invalid-feedback" *ngIf="candidatFormGroup?.get('dateNaissance')?.invalid && candidatFormGroup?.get('dateNaissance')?.touched">
+                              Veuillez entrer votre date de naissance.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label htmlFor="bac" class="col-sm-3 col-form-label">Baccalauréat <span class="text-danger">*</span></label>
+                          <div class="col-sm-9">
+                            <div class="col-sm-8">
+                              <select formControlName="bac" class="form-control form-control-sm"
+                                      [class.is-invalid]="candidatFormGroup?.get('bac')?.invalid && candidatFormGroup?.get('bac')?.touched"
+                                      required id="bac" (change)="onBacChange($event)">
+                                <option value="">---Sélectionner---</option>
+                                <option *ngFor="let option of bacOptions" [value]="option.value">{{ option.label }}</option>
+                                <option value="Autre">Autre</option>
+                              </select>
+                            </div>
+                            <div *ngIf="showBacAutre" class="col-sm-8">
+                              <input type="text" class="form-control"
+                                     [class.is-invalid]="candidatFormGroup?.get('bac2')?.invalid && candidatFormGroup?.get('bac2')?.touched"
+                                     pInputText id="bac2" aria-describedby="username-help" placeholder="Saisir le Bac" formControlName="bac2"
+                                     required>
+                              <div class="invalid-feedback" *ngIf="candidatFormGroup?.get('bac2')?.invalid && candidatFormGroup?.get('bac2')?.touched">
+                                Veuillez saisir le nom de votre baccalauréat.
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+
+                      <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label htmlFor="bacAnne" class="col-sm-3 col-form-label">Année d'obtention <span class="text-danger">*</span></label>
+                          <div class="col-sm-8">
+                            <input type="date" id="bacAnne" formControlName="bacAnne" class="form-control form-control-sm"
+                                   [class.is-invalid]="candidatFormGroup?.get('bacAnne')?.invalid && candidatFormGroup?.get('bacAnne')?.touched"
+                                   required min="2015-12-30">
+                            <div class="invalid-feedback" *ngIf="candidatFormGroup?.get('bacAnne')?.invalid && candidatFormGroup?.get('bacAnne')?.touched">
+                              Veuillez entrer l'année d'obtention de votre baccalauréat.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                      <div class="form-group row">
+                        <label htmlFor="pays" class="col-sm-3 col-form-label">Pays <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                          <select formControlName="pays" class="form-control form-control-sm"
+                                  [class.is-invalid]="candidatFormGroup?.get('pays')?.invalid && candidatFormGroup?.get('pays')?.touched"
+                                  required id="pays">
+                            <option value="">---Sélectionner---</option>
+                            <option *ngFor="let country of countriesList" [value]="country.name">{{ country.name }}</option>
+                          </select>
+                          <div class="invalid-feedback" *ngIf="candidatFormGroup?.get('pays')?.invalid && candidatFormGroup?.get('pays')?.touched">
+                            Veuillez sélectionner un pays.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label htmlFor="paysObtentionBac" class="col-sm-3 col-form-label">Pays Obtention Bac <span class="text-danger">*</span></label>
+                          <div class="col-sm-9">
+                            <select formControlName="paysObtentionBac" class="form-control form-control-sm"
+                                    [class.is-invalid]="candidatFormGroup?.get('paysObtentionBac')?.invalid && candidatFormGroup?.get('paysObtentionBac')?.touched"
+                                    required id="paysObtentionBac">
+                              <option value="">---Sélectionner---</option>
+                              <option *ngFor="let country of countriesList" [value]="country.name">{{ country.name }}</option>
+                            </select>
+                            <div class="invalid-feedback" *ngIf="candidatFormGroup?.get('paysObtentionBac')?.invalid && candidatFormGroup?.get('paysObtentionBac')?.touched">
+                              Veuillez sélectionner un pays pour l'obtention de votre baccalauréat.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                  </form>
+
+                  <br> <br><br>
+                  <form class="form-sample" *ngIf="step2" style="margin-bottom: 20px;">
+                    <div class="d-flex justify-content-between">
+                      <form class="form-sample" [formGroup]="diplomeFormGroup">
+                        <p class="card-description"> Informations Diplome</p>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label htmlFor="typediplome" class="col-sm-4 col-form-label">Type de diplome <span
+                                class="text-danger">*</span></label>
+                              <div class="col-sm-8">
+                                <select formControlName="typeDiplome" class="form-control form-control-sm" required
+                                        id="typediplome">
+                                  <option value="">---Sélectionner---</option>
+                                  <option value="DUT">DUT</option>
+                                  <option value="DEUG">DEUG</option>
+                                  <option value="DTS">DTS</option>
+                                  <option value="DEUST">DEUST</option>
+                                  <option value="BTS">BTS</option>
+                                  <option value="Autre">Autre</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-4 col-form-label">Spécialité <span
+                                class="text-danger">*</span></label>
+                              <div class="col-sm-8">
+                                <input type="text" required formControlName="specialite" class="form-control" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-4 col-form-label">Année d'obtention <span
+                                class="text-danger">*</span></label>
+                              <div class="col-sm-8">
+                                <input type="date" formControlName="anneeObtention" class="form-control" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-4 col-form-label">Établissement <span
+                                class="text-danger">*</span></label>
+                              <div class="col-sm-8">
+                                <input type="text" formControlName="etablissement" class="form-control" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label htmlFor="universite" class="col-sm-4 col-form-label">Université <span
+                                class="text-danger">*</span></label>
+                              <div class="col-sm-8">
+                                <select formControlName="universite" class="form-control form-control-sm" required
+                                        id="universite">
+                                  <option value="">---Sélectionner---</option>
+                                  <option value="Ibn_Zohr">Université Ibn Zohr</option>
+                                  <option value="Ibn_Tofail">Université Ibn-Tofail</option>
+                                  <option value="Hassan_II">Université Hassan II</option>
+                                  <option value="Hassa_I">Université Hassan- 1er</option>
+                                  <option value="Chouaib_Doukkali">Université Chouaib Doukkali</option>
+                                  <option value="Cadi_Ayyad">Université Cadi Ayyad</option>
+                                  <option value="Moulay_Slimane">Université Sultan Moulay Slimane</option>
+                                  <option value="Moulay_Ismaïl">Université Moulay-Ismaïl</option>
+                                  <option value="Mohamed_Ben_Abdellah">Université Sidi Mohamed Ben Abdellah</option>
+                                  <option value="Mohammed_V">Université Mohammed-V</option>
+                                  <option value="Abdelmalek_Essaâdi">Université Abdelmalek Essaâdi</option>
+                                  <option value="Autre">Autre</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <p>Le fichier doit contenir les pièces suivantes :</p>
+
+                          <ul *ngIf="filier?.typeDiplomeAObtenir === 'Master'">
+                            <li style="color: #da1a1a;">Une photo d'identité</li>
+                            <li style="color: #da1a1a;">Carte nationale (recto et verso sur une seule page)</li>
+                            <li style="color: #da1a1a;">Bac (recto et verso)</li>
+                            <li style="color: #da1a1a;">Relevé des notes : semestre 1, semestre 2, semestre 3, semestre 4,semestre 5 et semestre 6</li>
+                            <li style="color: #da1a1a;">Si vous avez un diplôme BTS, veuillez fournir les relevés de notes des 2 années</li>
+                            <li style="color: #da1a1a;">Les attestations de réussite</li>
+                            <li style="color: #da1a1a;">CV</li>
+                          </ul>
+                          <ul *ngIf="filier?.typeDiplomeAObtenir === 'Ingenieur_Etat'">
+                            <li style="color: #da1a1a;">Une photo d'identité</li>
+                            <li style="color: #da1a1a;">Carte nationale (recto et verso sur une seule page)</li>
+                            <li style="color: #da1a1a;">Bac (recto et verso)</li>
+                            <li style="color: #da1a1a;">Relevé des notes : semestre 1, semestre 2, semestre 3 et semestre 4</li>
+                            <li style="color: #da1a1a;">Si vous avez un diplôme BTS, veuillez fournir les relevés de notes des 2 années</li>
+                            <li style="color: #da1a1a;">Attestation de réussite (si disponible)</li>
+                            <li style="color: #da1a1a;">CV</li></ul>
+                          <ul *ngIf="filier?.typeDiplomeAObtenir === 'License'">
+                            <li style="color: #da1a1a;">Une photo d'identité</li>
+                            <li style="color: #da1a1a;">Carte nationale (recto et verso sur une seule page)</li>
+                            <li style="color: #da1a1a;">Bac (recto et verso)</li>
+                            <li style="color: #da1a1a;">Relevé des notes : semestre 1 et semestre 2</li>
+                            <li style="color: #da1a1a;">CV</li>
+                          </ul>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="col-sm-4 col-form-label">Fichier <span class="text-danger">*</span></label>
+                              <div class="col-sm-8">
+                                <input type="file" formControlName="fichier" class="form-control"
+                                       [class.error-border]="errorMessage && !successMessage"
+                                       value="fichier" (change)="onFileSelected($event)" accept=".pdf" />
+
+                                <!--<div *ngIf="successMessage" class="success-text">{{ successMessage }}</div>-->
+                                <div *ngIf="errorMessage && !successMessage" class="error-text">{{ errorMessage}}</div>
+                              </div>
+                            </div>
+
+                          </div>
+
+
+                        </div>
+
+                      </form>
+                    </div>
+
+                    <br>
+                   <form class="form-sample" [formGroup]="NotesFormGroup" *ngIf="typeDiplomeAObtenir === 'Ingenieur_Etat'">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Note Semestre 1 <span
+                              class="text-danger">*</span></label>
+                            <div class="col-sm-8">
+                              <input type="number" formControlName="note1" class="form-control" />
+                              <p>Utilisez le point comme séparateur décimal. Ex. 17.992</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Note Semestre 2 <span
+                              class="text-danger">*</span></label>
+                            <div class="col-sm-8">
+                              <input type="number" formControlName="note2" class="form-control" />
+                              <p>Utilisez le point comme séparateur décimal. Ex. 17.992</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Note Semestre 3 <span
+                              class="text-danger">*</span></label>
+                            <div class="col-sm-8">
+                              <input type="number" formControlName="note3" class="form-control" />
+                              <p>Utilisez le point comme séparateur décimal. Ex. 17.992</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Note Semestre 4 <span
+                              class="text-danger">*</span></label>
+                            <div class="col-sm-8">
+                              <input type="number" formControlName="note4" class="form-control" />
+                              <p>Utilisez le point comme séparateur décimal. Ex. 17.992</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+
+                    <form class="form-sample" [formGroup]="NotesFormGroup" *ngIf="typeDiplomeAObtenir === 'Master'">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Note Semestre 1 <span
+                              class="text-danger">*</span></label>
+                            <div class="col-sm-8">
+                              <input type="number" formControlName="note1" class="form-control" />
+                              <p>Utilisez le point comme séparateur décimal. Ex. 17.992</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Note Semestre 2 <span
+                              class="text-danger">*</span></label>
+                            <div class="col-sm-8">
+                              <input type="number" formControlName="note2" class="form-control" />
+                              <p>Utilisez le point comme séparateur décimal. Ex. 17.992</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Note Semestre 3 <span
+                              class="text-danger">*</span></label>
+                            <div class="col-sm-8">
+                              <input type="number" formControlName="note3" class="form-control" />
+                              <p>Utilisez le point comme séparateur décimal. Ex. 17.992</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Note Semestre 4 <span
+                              class="text-danger">*</span></label>
+                            <div class="col-sm-8">
+                              <input type="number" formControlName="note4" class="form-control" />
+                              <p>Utilisez le point comme séparateur décimal. Ex. 17.992</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Note Semestre 5 <span
+                              class="text-danger">*</span></label>
+                            <div class="col-sm-8">
+                              <input type="number" formControlName="note5" class="form-control" />
+                              <p>Utilisez le point comme séparateur décimal. Ex. 17.992</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Note Semestre 6 <span
+                              class="text-danger">*</span></label>
+                            <div class="col-sm-8">
+                              <input type="number" formControlName="note6" class="form-control" />
+                              <p>Utilisez le point comme séparateur décimal. Ex. 17.992</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                    <ngx-recaptcha2 #captchaElem
+                                    [siteKey]="siteKey"
+                    ></ngx-recaptcha2>
+                  </form>
+
+                  <div class="d-flex justify-content-end">
+                    <button *ngIf="step1" class="btn btn-gradient-info me-2" (click)="Suivant()">Suivant</button>
+                    <button *ngIf="step2" class="btn btn-gradient-secondary me-2" (click)="Back()">Précédent</button>
+                    <button *ngIf="step2" class="btn btn-gradient-info me-2" (click)="handleSuivant()">Soumettre votre candidature</button>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <app-footer />
+    </div>
+  </div>
+</div>

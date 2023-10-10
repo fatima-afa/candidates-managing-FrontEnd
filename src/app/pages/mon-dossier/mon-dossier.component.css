@@ -1,0 +1,16 @@
+.success-text {
+  color: green;
+}
+
+.error-text {
+  color: red;
+}
+
+.success-border {
+  border-color: green;
+}
+
+.error-border {
+  border-color: red;
+}
+

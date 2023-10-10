@@ -1,0 +1,46 @@
+.my-tabview {
+  background-color: #03518c;
+}
+filiere .views-label {
+  font-size: 1em;
+}
+.filiere_etiquette {
+  font-weight: bold;
+}
+.ui-widget-content {
+  color: #222;
+}
+div.views-field.views-field-field-type-formation{
+  margin-top: 29px;
+  margin-bottom: 29px;
+}
+button.p-ripple.p-element.p-button-rounded.p-button-secondary.p-button.p-component{
+  margin-top: 29px;
+  margin-bottom: 29px;
+}
+.button {
+  background-color: #545ac4;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.button:hover {
+  background-color: #0e115d;
+}
+.filiere-intitule {
+  font-size: 20px;
+  font-weight: lighter;
+  color: #242696;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+
